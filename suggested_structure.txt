@@ -1,0 +1,10 @@
+nuxt4-multidb-prisma/
+├── prisma/
+│   ├── postgres/       # PostgreSQL schema
+│   ├── mysql/          # WordPress schema
+│   └── mongodb/        # NoSQL collections
+├── server/
+│   ├── migrations/     # DB migration scripts
+│   └── caching/        # Redis utilities
+├── docker-volumes/     # DB initialization
+└── README.md           # With multi-DB architecture diagram
