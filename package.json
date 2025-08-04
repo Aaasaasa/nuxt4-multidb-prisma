@@ -1,0 +1,54 @@
+{
+  "name": "nuxt4-multidb-prisma",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down -v",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:generate": "prisma generate",
+    "prisma:studio": "prisma studio",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^3.3.0",
+    "@nuxtjs/i18n": "^10.0.3",
+    "@prisma/client": "^6.13.0",
+    "@sidebase/nuxt-auth": "^1.0.1",
+    "@sidebase/nuxt-prisma": "^0.1.2",
+    "ioredis": "^5.7.0",
+    "@prisma/nuxt": "^0.3.0",
+    "nuxt": "^4.0.2",
+    "ofetch": "^1.4.1",
+    "vue": "3.5.18",
+    "vue-i18n": "^11.1.11",
+    "wordpress-api": "^0.0.6"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^2.6.2",
+    "@nuxt/eslint-config": "^1.7.1",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@prisma/nuxt": "^0.3.0",
+    "@types/node": "^24.2.0",
+    "@types/wordpress__api-fetch": "^3.23.1",
+    "eslint": "^9.32.0",
+    "prisma": "^6.13.0",
+    "typescript": "^5.9.2",
+    "vue-eslint-parser": "^10.2.0"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "packageManager": "npm@10.0.0"
+}

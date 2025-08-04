@@ -1,0 +1,72 @@
+// PostgreSQL - Primary DB
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/postgres-client"
+}
+
+datasource postgresql {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+  schemas  = ["public", "wordpress"]
+}
+
+// MySQL - WordPress DB
+generator wordpressClient {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/wordpress-client"
+  previewFeatures = ["multiSchema"]
+}
+
+datasource wordpress {
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+  schemas  = ["wordpress"]
+}
+
+// MongoDB - NoSQL Data
+generator mongodbClient {
+  provider        = "prisma-client-js"
+  output          = "../node_modules/.prisma/mongodb-client"
+  previewFeatures = ["mongoDb"]
+}
+
+datasource mongodb {
+  provider = "mongodb"
+  url      = env("MONGO_URL")
+}
+
+// Shared Models
+model User {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  email        String    @unique
+  name         String?
+  posts        Post[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@map("users")
+}
+
+model Post {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  content     String
+  author      User       @relation(fields: [authorId], references: [id])
+  authorId    String     @db.ObjectId
+  wpLegacyId  Int?       @unique
+  categories  Category[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("posts")
+}
+
+model Category {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  slug      String   @unique
+  posts     Post[]
+  createdAt DateTime @default(now())
+
+  @@map("categories")
+}
