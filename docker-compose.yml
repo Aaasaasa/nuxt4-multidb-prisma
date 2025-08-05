@@ -1,4 +1,4 @@
-#version: '3.8'
+version: '3.8'
 
 services:
   # Nuxt Application
@@ -33,7 +33,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./docker-data/postgres:/var/lib/postgresql/data  # Persistent data
+      - ./.docker/postgres:/var/lib/postgresql/data  # Persistent data
       - ./dumps/init_postgres.sql:/docker-entrypoint-initdb.d/00-init.sql  # Initial dump
       - ./dumps/postgres:/docker-entrypoint-initdb.d/  # Additional scripts
     healthcheck:
@@ -51,7 +51,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./docker-data/mysql:/var/lib/mysql
+      - ./.docker/mysql:/var/lib/mysql
       - ./dumps/wordpress.sql:/docker-entrypoint-initdb.d/00-wp-dump.sql
       - ./dumps/mysql:/docker-entrypoint-initdb.d/
     command: --default-authentication-plugin=mysql_native_password
@@ -68,7 +68,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGO_DB}
     volumes:
-      - ./docker-data/mongodb:/data/db
+      - ./.docker/mongodb:/data/db
       - ./dumps/mongodb:/docker-entrypoint-initdb.d/
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh -u $${MONGO_ROOT_USER} -p $${MONGO_ROOT_PASSWORD} --quiet
