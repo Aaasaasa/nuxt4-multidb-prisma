@@ -3,7 +3,7 @@
 [![MultiDB](https://img.shields.io/badge/Database-PostgreSQL%2C%20MySQL%2C%20MongoDB-4169E1)]()
 
 
-# Nuxt 4 Multi-DB Prisma Starter Bridge
+# Nuxt 4 Multi-DB Prisma Starter Bridge  - still in development
 >A starter template for Nuxt 4 applications using Prisma ORM with support for multiple databases (Post
 greSQL, MySQL, MongoDB).
 
